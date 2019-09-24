@@ -1,15 +1,16 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: calico
+  name: calico-node
   labels:
     kubernetes.io/cluster-service: "true"
     addonmanager.kubernetes.io/mode: Reconcile
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: calico
+  name: calico-node
 subjects:
 - kind: ServiceAccount
-  name: calico
+  name: calico-node
   namespace: kube-system
+

@@ -1,8 +1,7 @@
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: calico
-  namespace: kube-system
+  name: calico-node
   labels:
     kubernetes.io/cluster-service: "true"
     addonmanager.kubernetes.io/mode: Reconcile
@@ -56,8 +55,6 @@ rules:
     verbs:
       - patch
   # Calico monitors various CRDs for config.
-  # Note: Though we are not using ipam from calico, calico node still needs those permission
-  #       to boot.
   - apiGroups: ["crd.projectcalico.org"]
     resources:
       - globalfelixconfigs
@@ -94,7 +91,7 @@ rules:
       - get
       - list
       - watch
-  # These permissions are only required for upgrade from v2.6, and can
+  # These permissions are only requried for upgrade from v2.6, and can
   # be removed after upgrade or on fresh installations.
   - apiGroups: ["crd.projectcalico.org"]
     resources:
