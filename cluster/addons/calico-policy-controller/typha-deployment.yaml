@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -40,16 +39,12 @@ spec:
           name: calico-typha
           protocol: TCP
         env:
-          # Enable "info" logging by default.  Can be set to "debug" to increase verbosity.
           - name: TYPHA_LOGSEVERITYSCREEN
             value: "info"
-          # Disable logging to file and syslog since those don't make sense in Kubernetes.
           - name: TYPHA_LOGFILEPATH
             value: "none"
           - name: TYPHA_LOGSEVERITYSYS
             value: "none"
-          # Monitor the Kubernetes API to find the number of running instances and rebalance
-          # connections.
           - name: TYPHA_CONNECTIONREBALANCINGMODE
             value: "kubernetes"
           - name: TYPHA_DATASTORETYPE
